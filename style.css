@@ -1,0 +1,113 @@
+.container_query_basic > *{
+    container-type: inline-size;
+}
+.div1{
+    max-width: 350px;
+}
+.div2{
+    max-width: 550px;
+}
+.div3{
+    max-width: 750px;
+}
+.common p{
+    margin: 0px;
+    padding-block: 2rem;
+}
+.container_query_basic > *{
+    border: 2px solid rgb(70, 109, 51);
+    margin-inline: auto;
+    margin-block: 6em;
+}
+@container (inline-size >= 100px) {
+    .common{
+        background: rgb(223, 26, 26);
+    }
+}
+@container (inline-size >= 450px) {
+    .common{
+        background: rgb(88, 223, 26);
+    }
+}
+@container (inline-size >= 650px) {
+    .common{
+        background: gray;
+    }
+}
+
+main{
+    margin-block: 5em;
+    width: calc(100vw - 15em);
+    margin-inline: auto;
+}
+.content{
+    display: grid;
+    grid-template-columns: 1fr 16em;
+    gap: 3em;
+}
+.sidebar{
+    background: lightgray;
+    padding: 0.8em;
+    border-radius: .5em;
+}
+.call_to_action{
+    background: linear-gradient(to right, rgb(0, 68, 255),rgb(255, 136, 0));
+    padding: .8em;
+    border-radius: .5em;
+    display: flex;
+    gap: 2em;
+}
+.call_to_action > .text{
+    flex-basis: 85%;
+}
+.call_to_action > .button {
+    flex-basis: 15%;
+    display: flex;
+    align-items: center;
+}
+.button > button{
+    border: none;
+    border-radius: .8em;
+    padding: 1em 2em;
+    background: linear-gradient(to right, rgb(255, 251, 0),rgb(0, 238, 255));
+    color: black;
+    flex-grow: 1;
+
+}
+.content{
+    container: content / inline-size;
+}
+.primarybar{
+    container: primarybar / inline-size;
+}
+.sidebar{
+    container: sidebar / inline-size;
+}
+.call_to_action{
+    container: call_to_action / inline-size;
+}
+@media (width <= 1200px) {
+    .content{
+        all: unset;
+        display: grid;
+        grid-template-rows: 1fr min-content;
+    }
+    .content{
+        container: content / inline-size;
+    }
+}
+@container sidebar (inline-size <= 256px) {
+    .call_to_action{
+        flex-direction: column;
+    }
+}
+@container primarybar (inline-size <= 856px) {
+    .call_to_action{
+        flex-direction: column;
+    }
+}
+@container content (inline-size <= 870px) {
+    .content > * > .call_to_action{
+        flex-direction: column;
+    }
+}
